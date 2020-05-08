@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, ScrollView } from 'react-native'
 import { Container, List, ListItem, Text, Button, Left, Spinner } from 'native-base'
 import { Audio } from 'expo-av'
-import Navbar from '../components/Navbar'
+import NavbarDrawer from '../components/NavbarDrawer'
 import AudioControl from '../components/AudioControl'
 import API from '../utils/api'
 import { styles } from '../styles'
@@ -62,7 +62,7 @@ const SurahSingle = ({ navigation }) => {
 
 	return (
 		<Container style={{ backgroundColor: '#fff2e2'}}>
-			<Navbar title={name ? name : 'Loading...'} subtitle={!!latin && latin} navigation={navigation}/>
+			<NavbarDrawer title={name ? `${latin} - ${name}` : 'Loading...'} navigation={navigation} nomenu/>
 			{ pending && <View style={styles.toCenter}><Spinner color='red' /></View>}
 			{ !!ayah &&
 				<ScrollView>

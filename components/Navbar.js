@@ -1,9 +1,11 @@
 import React from 'react'
 import { Header, Left, Body, Right, Title, Button, Icon, Subtitle } from 'native-base'
 
+//Komponen utama
+//Menerima 3 paramater yaitu title, subtitle dan navigation
 const Navbar = ({ title, subtitle, navigation }) => {
 	return (
-        <Header style={{ backgroundColor: 'salmon', borderBottomLeftRadius: 30, borderBottomRightRadius: 30}} androidStatusBarColor="black">
+        <Header style={{ backgroundColor: 'salmon', borderBottomLeftRadius: 30, borderBottomRightRadius: 30}} androidStatusBarColor="salmon">
        		{ navigation && 
 	          <Left>
 	            <Button transparent>

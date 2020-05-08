@@ -7,7 +7,7 @@ import Materi from '../screens/Materi'
 import Hafalan from '../screens/Hafalan'
 import Profile from '../screens/Profile'
 
-
+//Inisiasi tabbar
 const Tabs = createBottomTabNavigator({
 	Home: {
 		screen: Home,

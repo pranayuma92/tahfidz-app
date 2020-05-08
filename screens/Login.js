@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { View, Image, ScrollView } from 'react-native'
-import { Container, Form, Item, Input, Label, Button, Text } from 'native-base'
+import React, { useState, useEffect } from 'react'
+import { View, Image, ScrollView, StyleSheet, Text } from 'react-native'
+import { Input, Button } from 'react-native-elements';
 import { signIn } from '../store/actions/userAction'
 import { connect } from 'react-redux'
 
@@ -10,12 +10,12 @@ const Login = ({ auth, navigation, signIn, msg }) => {
 	const [ password, setPassword ] = useState('')
 
 	if(auth.uid){
-		navigation.navigate('Home')
+		navigation.replace('Home')
 	}
 
 	const login = () => {
 		const creds = {
-			email: email,
+			email: email.toLowerCase(),
 			password: password
 		}
 
@@ -25,24 +25,38 @@ const Login = ({ auth, navigation, signIn, msg }) => {
 	return (
 		<ScrollView style={{ backgroundColor: '#fff2e2', flex: 1}}>
 			<Image source={require('../assets/mumtaz.png')} style={{alignSelf: 'center', width: '100%', heiht: 'auto'}}/>
-			<Form style={{position: 'relative', top: -50, marginHorizontal: 10}}>
-	            <Item floatingLabel>
-	              <Label>Username</Label>
-	              <Input style={{textTransform: 'lowercase'}} onChangeText={(text) => setEmail(text)} />
-	            </Item>
-	            <Item floatingLabel last>
-	              <Label>Password</Label>
-	              <Input secureTextEntry onChangeText={(text) => setPassword(text)}/>
-	            </Item>
-	        </Form>
+	        <View style={{paddingHorizontal: 20, marginTop: -20, marginBottom: 20}}>
+	        	<Input label="E-mail"
+					labelStyle={{fontWeight: '300'}}
+					inputStyle={styles.inputStyle} 
+					containerStyle={styles.containerInput} 
+					inputContainerStyle={styles.inputContainer}
+					onChangeText={(text) => setEmail(text)} 
+				/>
+				<Input label="Kata Sandi"
+					labelStyle={{fontWeight: '300'}}
+					secureTextEntry 
+					inputStyle={styles.inputStyle} 
+					containerStyle={styles.containerInput}
+					inputContainerStyle={styles.inputContainer}
+					onChangeText={(text) => setPassword(text)} 
+				/>
+	        </View>
 	        <View style={{paddingHorizontal: 100}}>
-	          	<Button block rounded style={{backgroundColor: 'salmon'}} onPress={login}><Text>Masuk</Text></Button>
+	          	<Button
+				  title="Masuk"
+				  buttonStyle={{backgroundColor: 'salmon', borderRadius: 50 }}
+				  onPress={login}
+				/>
 	        </View>
 	        { !!msg && 
 	        	<View style={{paddingHorizontal: 30, paddingVertical: 10, alignSelf: 'center'}}>
     	        	<Text>{msg}</Text>
     	        </View>
 	       	}
+	       	<View style={{paddingHorizontal: 30, paddingVertical: 10, alignSelf: 'center'}}>
+	        	<Text onPress={() => navigation.navigate('SignUp')}>Buat akun</Text>
+	        </View>
 		</ScrollView>
 	)
 }
@@ -55,6 +69,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	signIn : creds => dispatch(signIn(creds))
+})
+
+const styles = StyleSheet.create({
+	inputContainer: {backgroundColor: '#ffffff', borderBottomWidth: 0, borderRadius: 10},
+	containerInput: {height: 70},
+	inputStyle: { paddingHorizontal: 10}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

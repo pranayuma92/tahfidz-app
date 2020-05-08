@@ -4,13 +4,17 @@ import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { connect } from 'react-redux'
 import Tabs from './Tabs'
+import Drawer from './Drawer'
 import Login from '../screens/Login'
 import SignUp from '../screens/SignUp'
 import SurahSingle from '../screens/SurahSingle'
+import Profile from '../screens/Profile'
+import Setting from '../screens/Setting'
 
+//Inisiasi untuk menjalankan navigasi
 const Navigation = createStackNavigator({
 	Home: {
-		screen: Tabs,
+		screen: Drawer,
 		navigationOptions: {
             header: null,
         },
@@ -32,7 +36,20 @@ const Navigation = createStackNavigator({
 		navigationOptions: {
             header: null,
         },
+	},
+	Profile: {
+		screen: Profile,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	Setting: {
+		screen: Setting,
+		navigationOptions: {
+            header: null,
+        },
 	}
+
 }, {
   initialRouteName: 'Home'
 })

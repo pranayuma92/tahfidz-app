@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { View, ScrollView} from 'react-native'
 import { Container, Text } from 'native-base'
-import Navbar from '../components/Navbar'
+import NavbarDrawer from '../components/NavbarDrawer'
 
 const Hafalan = ({ navigation }) => {
 	let data = []
@@ -11,16 +11,16 @@ const Hafalan = ({ navigation }) => {
     }
 	return (
 		<Container style={{ backgroundColor: '#fff2e2'}}>
-	        <Navbar title="Hafalan" />
-		        <ScrollView>
-		        	<View style={{flex: 1, flexDirection: 'row', flexWrap : 'wrap', justifyContent: 'space-between', alignItems: 'center'}}>
-		        	{ data.map( item => (
-		        		<View style={{width: '33.33%'}}>
-				        	<Text style={styles.juz}>JUZ {item}</Text>
-				        </View>
-		        	))}
+	        <NavbarDrawer title="Hafalan" navigation={navigation}/>
+	        <ScrollView>
+	        	<View style={{flex: 1, flexDirection: 'row', flexWrap : 'wrap', justifyContent: 'space-between', alignItems: 'center'}}>
+	        	{ data.map( item => (
+	        		<View style={{width: '33.33%'}}>
+			        	<Text style={styles.juz}>JUZ {item}</Text>
 			        </View>
-			    </ScrollView>
+	        	))}
+		        </View>
+		    </ScrollView>
 	    </Container>
 	)
 }

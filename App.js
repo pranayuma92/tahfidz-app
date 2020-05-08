@@ -4,6 +4,7 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import Navigation from './components/Navigation'
+import Drawer from './components/Drawer'
 import { Provider, connect } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
@@ -14,10 +15,11 @@ import rootReducer  from './store/reducers/rootReducer'
 import { getAllSurah } from './store/actions/quranAction'
 import {decode, encode} from 'base-64';
 
-if (!global.btoa) {  global.btoa = encode }
-
+//Decoder untuk variable firebase yang tidak terdefinisi
+if (!global.btoa) {  global.btoa = encode } 
 if (!global.atob) { global.atob = decode }
 
+//Inisiasi penyimpanan global redux
 const store = createStore(rootReducer, 
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
@@ -26,11 +28,11 @@ const store = createStore(rootReducer,
   )
 );
 
-
+//Komponen utama
 const App = () =>  {
   const [isReady, setReady] = useState(false)
 
-
+  //inisiasi fungsi untuk memuat font eksternal dengan metode asinkronus
   const init = async () => {
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
@@ -42,22 +44,22 @@ const App = () =>  {
     setReady(true)
   }
 
+  //Pemanggilan fungsi untuk pertama kali saat komponen di render
   useEffect( async () => {
     init()
-    // store.dispatch(getAllSurah())
-    // console.log(store.getState())
   }, [])
 
   if(!isReady) return <AppLoading />;
 
+  //Render komponen
   return (
-
     <Provider store={store}>
       <Navigation />
     </Provider>
   );
 }
 
+//Style component
 const styles = StyleSheet.create({
   container: {
     flex: 1,

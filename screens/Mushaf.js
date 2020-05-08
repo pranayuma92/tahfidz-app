@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, ScrollView } from 'react-native'
 import { Container, List, ListItem, Text, Spinner, Left, Body } from 'native-base'
-import Navbar from '../components/Navbar'
+import NavbarDrawer from '../components/NavbarDrawer'
 import { connect } from 'react-redux'
 import { styles } from '../styles'
 
@@ -20,7 +20,7 @@ const Mushaf = ({ surah, navigation }) => {
 	
 	return (
 		<Container style={{ backgroundColor: '#fff2e2'}}>
-	       <Navbar title="Mushaf" />
+	       	<NavbarDrawer title="Mushaf" navigation={navigation}/>
 		    { isPending && <View style={styles.toCenter}><Spinner color='red' /></View>}
 		    { !!surahs &&
 		        <ScrollView>

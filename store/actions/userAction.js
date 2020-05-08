@@ -1,6 +1,6 @@
 const signUp = (newUser, callback) => {
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
-		dispatch({type: 'AUTH_PROCESS'})
+		dispatch({type: 'AUTH_INIT'})
 		const firebase = getFirebase()
 		const firestore = getFirestore()
 
@@ -22,8 +22,9 @@ const signUp = (newUser, callback) => {
 		}).then(() => {
 			dispatch({type: 'SIGNUP_SUCCESS'})
 			callback()
-		}).catch(error => {
-			console.log(error)
+		}).catch(err => {
+			dispatch({type: 'SIGNUP_ERROR', err})
+			console.log(JSON.stringify(err))
 		})
 	}
 }

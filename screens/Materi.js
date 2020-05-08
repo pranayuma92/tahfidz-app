@@ -1,12 +1,16 @@
 import React from 'react'
 import { View, ScrollView } from 'react-native'
 import { Container, Card, CardItem, Body, Text, Content } from 'native-base'
-import Navbar from '../components/Navbar'
+import NavbarDrawer from '../components/NavbarDrawer'
 
 const Materi = ({ navigation }) => {
+	const test = () => {
+		alert('Button works great!')
+	}
+
 	return (
 		<Container style={{ backgroundColor: '#fff2e2'}}>
-	        <Navbar title="Materi" />
+	        <NavbarDrawer title="Materi" navigation={navigation} />
 	        <ScrollView>
 	        	<Content padder>
 		        	<Text style={{color: 'salmon', fontSize: 20, fontWeight: 'bold'}}>Makharijul Huruf</Text>

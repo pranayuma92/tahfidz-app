@@ -27,6 +27,13 @@ const userReducer = (state = initState, action) => {
 				pending: false,
 				message: 'Add new user success'
 			}
+		case 'SIGNUP_ERROR' :
+			console.log('login failed', action.err.message)
+			return {
+				...state,
+				authError: 'Sigup failed',
+				message: action.err.message
+			}
 		case 'LOGIN_ERROR' :
 			console.log('login failed', action.err.message)
 			return {
