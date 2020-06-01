@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView } from 'react-native'
-import { Container, List, ListItem, Text, Spinner, Left, Body } from 'native-base'
+import { View, ScrollView, ActivityIndicator, Text } from 'react-native'
+import { ListItem } from 'react-native-elements';
 import NavbarDrawer from '../components/NavbarDrawer'
 import { connect } from 'react-redux'
 import { styles } from '../styles'
@@ -19,27 +19,32 @@ const Mushaf = ({ surah, navigation }) => {
 	}, [surahs, isPending])
 	
 	return (
-		<Container style={{ backgroundColor: '#fff2e2'}}>
+		<View style={{ backgroundColor: '#fff2e2', flex: 1}}>
 	       	<NavbarDrawer title="Mushaf" navigation={navigation}/>
-		    { isPending && <View style={styles.toCenter}><Spinner color='red' /></View>}
+		    { isPending && <View style={styles.toCenter}><ActivityIndicator size="large" color="salmon" /></View>}
 		    { !!surahs &&
 		        <ScrollView>
-			       <List>
-			       	{
-			       		!!surahs && surahs.map((item, index) => (
-			       			<ListItem key={index} onPress={() => navigation.push('SurahSingle', { number: item.number })}>
-			       				<Left style={{ backgroundColor: 'salmon', flex: 1, justifyContent: 'center', borderRadius: 5 }}>
-			       					<Text style={{ color: '#fff' }}>{index+1}</Text>
-			       				</Left>
-			       				<Text style={{ width: '85%', marginLeft: 10, fontFamily: 'Quran'}}>{item.englishName} - {item.name}</Text>
-			       			</ListItem>
+			       	{ !!surahs && surahs.map((item, index) => (
+		       			<ListItem 
+		       				key={index} 
+		       				onPress={() => navigation.push('SurahSingle', { number: item.number })}
+		       				title={
+		       					<Text style={{ marginLeft: 10, fontFamily: 'Quran', fontSize: 16, fontWeight: 'bold', color: '#656565'}}>{item.englishName} - {item.name}</Text>
+		       				}
+		       				leftElement={
+		       					<View style={{ backgroundColor: 'salmon', width: 30, height: 30, borderRadius: 50, alignItems: 'center', justifyContent: 'center'}}>
+		       						<Text style={{ color: '#fff' }}>{index+1}</Text>
+		       					</View>
+		       				}
+		       				containerStyle={{backgroundColor: '#fff2e2'}}
+		       				bottomDivider
+    						chevron
+		       			/>
 
-			       		))
-			       	}
-			       </List>
+		       		))}
 		        </ScrollView>
 		    }
-	    </Container>
+	    </View>
 	)
 }
 

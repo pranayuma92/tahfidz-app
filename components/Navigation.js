@@ -10,6 +10,7 @@ import SignUp from '../screens/SignUp'
 import SurahSingle from '../screens/SurahSingle'
 import Profile from '../screens/Profile'
 import Setting from '../screens/Setting'
+import HafalanSingle from '../screens/HafalanSingle'
 
 //Inisiasi untuk menjalankan navigasi
 const Navigation = createStackNavigator({
@@ -45,6 +46,12 @@ const Navigation = createStackNavigator({
 	},
 	Setting: {
 		screen: Setting,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	HafalanSingle: {
+		screen: HafalanSingle,
 		navigationOptions: {
             header: null,
         },

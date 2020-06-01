@@ -1,8 +1,8 @@
 //Komponen beranda
 
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView, Image } from 'react-native'
-import { Container, Spinner, Content, List, ListItem, Left, Right, Thumbnail, Body, Button, Text, Card, CardItem } from 'native-base'
+import { View, ScrollView, Image, ActivityIndicator, Text } from 'react-native'
+import { Avatar, Button, Card, ListItem } from 'react-native-elements'
 import NavbarDrawer from '../components/NavbarDrawer'
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -10,10 +10,17 @@ import { compose } from 'redux';
 import { styles } from '../styles'
 import { getAllSurah } from '../store/actions/quranAction'
 
-const Home = ({ navigation, user, auth, users, getAllSurah }) => {
+const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
 
 	//Inisasi data lokal komponen
-	const [ student, setStudent ] = useState(['Fulan', 'Ibnu', 'Hasan', 'Khalid', 'Maulana', 'Iqbal', 'Haikal']) 
+	const [ student, setStudent ] = useState(['Fulan', 'Ibnu', 'Hasan', 'Khalid', 'Maulana', 'Iqbal', 'Haikal'])
+	const dataHafalan = hafalan && hafalan.filter( item => user && user.hafalan.includes(item.id))
+	const [ ayahfrom, setAyahfrom ] = useState('')
+	const [ ayahto, setAyahto] = useState('')  
+	const [ test, setTest ] = useState('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ')
+	const [ tajwidCorrection, setTajwidCorrection ] = useState([])
+	const [ makhrajCorrection, setMakhrajCorrection ] = useState([])
+	const [ correction, setCorrection ] = useState(false)
 
 	//Cek autentikasi
 	//Jika autentikasi ID kosong, arahkan ke layar login
@@ -26,48 +33,104 @@ const Home = ({ navigation, user, auth, users, getAllSurah }) => {
 		getAllSurah()
 	}, [])
 
+	const mark = (h) => {
+		alert(h)
+		if(correction){
+			setTajwidCorrection([...tajwidCorrection, h])
+		} else {
+			setMakhrajCorrection([...makhrajCorrection, h])
+		}
+	}
+
+	const toggleCorrection = () => {
+		setCorrection(!correction)
+	}
+
 	//Render komponen
 	return (
-		<Container style={{ backgroundColor: '#fff2e2'}}>
-	        <NavbarDrawer title={!!user ?  `Assalamu'alaikum, ${user.name.split(' ')[0]}` : 'Beranda'} navigation={navigation}/>
-    		{ !user && <View style={styles.toCenter}><Spinner color='red' /></View> }
-    		{
-    			!!user &&
+		<View style={styles.bgPrimary}>
+	        <NavbarDrawer title={!!user ? `Assalamu'alaikum, ${user.name.split(' ')[0]}` : 'Beranda'} navigation={navigation}/>
+    		{ !user && <View style={styles.toCenter}><ActivityIndicator size="large" color="salmon" /></View> }
+    		{ !!user &&
 		        <ScrollView>
-		        	<List>
-			            <ListItem thumbnail style={{ borderColor: '#fff2e2' }}>
-			              <Left>
-			                <Thumbnail rounded source={{ uri: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' }} />
-			              </Left>
-			              <Body>
-			                <Text style={{fontWeight: 'bold', fontSize: 17}}>{user.name}</Text>
-			                <Text note numberOfLines={1}>Sedang di hafal</Text>
-			                <Text note numberOfLines={1} style={{fontWeight: 'bold', fontSize: 14}}>Al-Mursalat 1 -10</Text>
-			              </Body>
-			            </ListItem>
-			        </List>
-			        <Content style={{paddingHorizontal: 15}}>
-			        	<Button block small style={{backgroundColor: '#50755f', marginBottom: 10}} onPress={() => navigation.toggleDrawer()}><Text>Hafalan saya</Text></Button>
-			        	<Card>
-			            	<List>
-			            		{ student.map( item => (
-						            <ListItem thumbnail style={{ borderColor: '#fff2e2' }}>
-						              <Left>
-						                <Thumbnail rounded source={{ uri: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' }} />
-						              </Left>
-						              <Body>
-						                <Text style={{fontSize: 15}}>{item}</Text>
-						                <Text note numberOfLines={1}>Al-Anbiya</Text>
-						                <Text note numberOfLines={1} style={{fontSize: 14}}>1 -10</Text>
-						              </Body>
-						            </ListItem>
-			            		))}
-					        </List>
-			          	</Card>
-			        </Content>
+			        <View style={styles.userAvatarWrapper}>
+			        	<View style={styles.userAvatarImg}>
+			        		<Avatar
+							  rounded
+							  size="large"
+							  source={{ uri: `https://api.adorable.io/avatars/285/${ user.name }.png`}}
+							/>
+			        	</View>
+			        	<View style={styles.userAvatarSideText}>
+			        		<Text style={[styles.fontBig, styles.hasBold, styles.darkGrey]}>{user.name}</Text>
+			        		<Text style={styles.darkGrey}>Sedang di hafal</Text>
+			        		{ dataHafalan && dataHafalan.map(item => {
+			        			if(item.status === 'Belum selesai'){
+				        			return(
+			                			<Text style={[styles.hasBold, styles.fontMedium, styles.darkGrey]}>{item.surah.split('_')[1]} {item.from} - {item.to}</Text>
+				        			)
+			        			}
+			        		}) }
+			        	</View>
+			        </View>
+			        <View>
+			        <View style={{flex: 1, flexDirection: 'row-reverse', padding: 15}}>
+			        { test.split(' ').map((h, index) => {
+			        		let color;
+
+			        		if(tajwidCorrection.includes(h)){
+								color = 'rgba(255, 0, 0, 0.3)'
+							} else if(makhrajCorrection.includes(h)){
+								color = 'rgba(51, 255, 0, 0.3)'
+							}
+
+			        		return 	(
+			        			<Text onPress={() => mark(h)} key={index} style={{backgroundColor: color, fontFamily: 'Quran', fontSize: 20, borderRadius:3}}>{h}</Text>
+			        		)
+			        	})
+			        }
+			        </View>
+			        <Text onPress={toggleCorrection}>{correction ? 'Tajwid' : 'Makhraj'}</Text>
+			        </View>
+			        <View style={{paddingHorizontal: 15}}>
+			        	<Button 
+			        		small
+			        		title="HAFALAN SAYA" 
+			        		buttonStyle={styles.greenButton} 
+			        		onPress={() => navigation.navigate('HafalanSingle', { from: ayahfrom, to: ayahto  })} 
+			        	/>
+			        </View>
+			        <Card containerStyle={{ marginBottom: 30, borderRadius: 20, padding:0}}>
+						{ student.map((u, i) => {
+							let stripe
+
+							if(i % 2 !== 0) {
+								stripe = {backgroundColor: 'rgba(52, 52, 52, 0.1)'}
+							} else {
+								stripe = {backgroundColor: 'rgba(0, 0, 0, 0.0)'}
+							}
+
+							return (
+							    <ListItem
+						          	key={i}
+						          	roundAvatar
+						          	leftAvatar={{ source: { uri: `https://api.adorable.io/avatars/285/${ u }.png`} }}
+						          	title={u}
+						          	titleStyle={[styles.hasBold, styles.darkGrey]}
+						          	subtitle={
+						          		<View>
+						          			<Text style={styles.darkGrey}>Sedang di hafal</Text>
+			                				<Text style={[styles.hasBold, styles.fontMedium, styles.darkGrey]}>Al-Mursalat 1 -10</Text>
+						          		</View>
+						          	}
+						         	containerStyle={stripe}
+							    />
+							);
+						})}
+					</Card>
 		        </ScrollView>
     		}
-	    </Container>
+	    </View>
 	)
 }
 
@@ -76,9 +139,11 @@ const mapStateToProps = (state, props) => {
 	const auth = state.firebase.auth;
 	const users = state.firestore.data.users;
 	const user = users ? users[auth.uid] : null;
+	const hafalan = state.firestore.ordered.hafalan
 	return {
 		user: user,
-		auth: auth
+		auth: auth,
+		hafalan: hafalan
 	}
 }
 
@@ -90,7 +155,11 @@ const mapDispatchToProps = (dispatch) => ({
 //Menghubungkan komponen dengan redux store
 export default compose(
 	connect(mapStateToProps, mapDispatchToProps),
-	firestoreConnect([
-		{ collection:'users' }
-	])
+	firestoreConnect(({ user, auth }) => {
+		console.log(auth.uid)
+		return [
+			{ collection:'users' },
+			{ collection: 'hafalan'}
+		]
+	})
 )(Home)

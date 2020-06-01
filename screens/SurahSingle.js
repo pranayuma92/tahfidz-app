@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView } from 'react-native'
-import { Container, List, ListItem, Text, Button, Left, Spinner } from 'native-base'
+import { View, ScrollView, ActivityIndicator, Text } from 'react-native'
+import { ListItem, Button } from 'react-native-elements';
 import { Audio } from 'expo-av'
 import NavbarDrawer from '../components/NavbarDrawer'
 import AudioControl from '../components/AudioControl'
@@ -61,31 +61,40 @@ const SurahSingle = ({ navigation }) => {
 	}
 
 	return (
-		<Container style={{ backgroundColor: '#fff2e2'}}>
+		<View style={{ backgroundColor: '#fff2e2', flex: 1}}>
 			<NavbarDrawer title={name ? `${latin} - ${name}` : 'Loading...'} navigation={navigation} nomenu/>
-			{ pending && <View style={styles.toCenter}><Spinner color='red' /></View>}
+			{ pending && <View style={styles.toCenter}><ActivityIndicator size="large" color="salmon" /></View>}
 			{ !!ayah &&
 				<ScrollView>
-					<List>
-					 	{
-					 		!!ayah && ayah.map((item, index) => (
-								<ListItem key={index} style={styles.justify}>
-									<Left style={{ backgroundColor: 'salmon', flex: 1, justifyContent: 'center', borderRadius: 5 }}>
-										<Text style={{ color: '#fff' }}>{item.numberInSurah}</Text>
-									</Left>
-									<Text style={styles.ayah}>{(number != 1) ? item.text.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '') : item.text}</Text>
-								</ListItem>
-							))
-					 	}
-					 	{ ayahcount > 10 && 
-					 		<View style={{paddingHorizontal: 100, paddingVertical: 30}}>
-					 			{ available && <Button style={{ backgroundColor: 'salmon'}} rounded block onPress={loadMore}><Text>{loadtext}</Text></Button> }
-					 		</View> 
-					 	}
-					</List>
+				 	{ !!ayah && ayah.map((item, index) => (
+						<ListItem 
+		       				key={index} 
+		       				title={
+		       					<Text style={[styles.ayah, { alignSelf: 'flex-end', color: '#656565'}]}>{(number != 1) ? item.text.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '') : item.text}</Text>
+		       				}
+		       				leftElement={
+		       					<View style={{ backgroundColor: 'salmon', width: 30, height: 30, borderRadius: 50, alignItems: 'center', justifyContent: 'center'}}>
+		       						<Text style={{ color: '#fff' }}>{item.numberInSurah}</Text>
+		       					</View>
+		       				}
+		       				containerStyle={{backgroundColor: '#fff2e2'}}
+		       				bottomDivider
+		       			/>
+					))}
+				 	{ ayahcount > 10 && 
+				 		<View style={{paddingHorizontal: 100, paddingVertical: 30}}>
+				 			{ available && 
+					 			<Button
+								  title={loadtext}
+								  buttonStyle={{backgroundColor: 'salmon', borderRadius: 50 }}
+								  onPress={loadMore}
+								/>
+							}
+				 		</View> 
+				 	}
 				</ScrollView>
 			}
-		</Container>
+		</View>
 	)
 
 }
