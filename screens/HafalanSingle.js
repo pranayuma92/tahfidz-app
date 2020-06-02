@@ -23,7 +23,7 @@ const HafalanSingle = ({ navigation, user, auth,  hafalan }) => {
 	       				key={index} 
 	       				
 	       				title={
-	       					<Text style={{ marginLeft: 10, fontFamily: 'Quran', fontSize: 16, fontWeight: 'bold', color: '#656565'}}>{item.surah.split('_')[1]}</Text>
+	       					<Text style={{ marginLeft: 10, fontFamily: 'Quran', fontSize: 16, fontWeight: 'bold', color: '#656565'}}>{item.surah.split('_')[1]} | {item.from} - {item.to} </Text>
 	       				}
 	       				leftElement={
 	       					<View style={{ backgroundColor: 'salmon', width: 30, height: 30, borderRadius: 50, alignItems: 'center', justifyContent: 'center'}}>
@@ -33,6 +33,8 @@ const HafalanSingle = ({ navigation, user, auth,  hafalan }) => {
 	       				containerStyle={{backgroundColor: '#fff2e2'}}
 	       				bottomDivider
 						chevron
+						onPress={() => navigation.push('HafalanDetails', {surah : item.surah.split('_')[0], to: item.to, from: item.from}) }
+
 	       			/>
 
 	       		))}
