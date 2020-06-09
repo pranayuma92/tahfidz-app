@@ -17,10 +17,7 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
 	const dataHafalan = hafalan && hafalan.filter( item => user && user.hafalan.includes(item.id))
 	const [ ayahfrom, setAyahfrom ] = useState('')
 	const [ ayahto, setAyahto] = useState('')  
-	const [ test, setTest ] = useState('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ')
-	const [ tajwidCorrection, setTajwidCorrection ] = useState([])
-	const [ makhrajCorrection, setMakhrajCorrection ] = useState([])
-	const [ correction, setCorrection ] = useState(false)
+	
 
 	//Cek autentikasi
 	//Jika autentikasi ID kosong, arahkan ke layar login
@@ -32,19 +29,6 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
 		//Memanggil fungsi untuk mengambil data surah dan ayat dari API
 		getAllSurah()
 	}, [])
-
-	const mark = (h) => {
-		alert(h)
-		if(correction){
-			setTajwidCorrection([...tajwidCorrection, h])
-		} else {
-			setMakhrajCorrection([...makhrajCorrection, h])
-		}
-	}
-
-	const toggleCorrection = () => {
-		setCorrection(!correction)
-	}
 
 	//Render komponen
 	return (
@@ -62,36 +46,18 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
 							/>
 			        	</View>
 			        	<View style={styles.userAvatarSideText}>
-			        		<Text style={[styles.fontBig, styles.hasBold, styles.darkGrey]}>{user.name}</Text>
+			        		<Text style={styles.fontBig}>{user.name}</Text>
 			        		<Text style={styles.darkGrey}>Sedang di hafal</Text>
 			        		{ dataHafalan && dataHafalan.map(item => {
 			        			if(item.status === 'Belum selesai'){
 				        			return(
-			                			<Text style={[styles.hasBold, styles.fontMedium, styles.darkGrey]}>{item.surah.split('_')[1]} {item.from} - {item.to}</Text>
+			                			<Text style={styles.hasBold}>{item.surah.split('_')[1]} {item.from} - {item.to}</Text>
 				        			)
 			        			}
 			        		}) }
 			        	</View>
 			        </View>
-			        <View>
-			        <View style={{flex: 1, flexDirection: 'row-reverse', padding: 15}}>
-			        { test.split(' ').map((h, index) => {
-			        		let color;
-
-			        		if(tajwidCorrection.includes(h)){
-								color = 'rgba(255, 0, 0, 0.3)'
-							} else if(makhrajCorrection.includes(h)){
-								color = 'rgba(51, 255, 0, 0.3)'
-							}
-
-			        		return 	(
-			        			<Text onPress={() => mark(h)} key={index} style={{backgroundColor: color, fontFamily: 'Quran', fontSize: 20, borderRadius:3}}>{h}</Text>
-			        		)
-			        	})
-			        }
-			        </View>
-			        <Text onPress={toggleCorrection}>{correction ? 'Tajwid' : 'Makhraj'}</Text>
-			        </View>
+			        
 			        <View style={{paddingHorizontal: 15}}>
 			        	<Button 
 			        		small
@@ -116,11 +82,11 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
 						          	roundAvatar
 						          	leftAvatar={{ source: { uri: `https://api.adorable.io/avatars/285/${ u }.png`} }}
 						          	title={u}
-						          	titleStyle={[styles.hasBold, styles.darkGrey]}
+						          	titleStyle={styles.hasBold}
 						          	subtitle={
 						          		<View>
 						          			<Text style={styles.darkGrey}>Sedang di hafal</Text>
-			                				<Text style={[styles.hasBold, styles.fontMedium, styles.darkGrey]}>Al-Mursalat 1 -10</Text>
+			                				<Text style={styles.hasBold}>Al-Mursalat 1 -10</Text>
 						          		</View>
 						          	}
 						         	containerStyle={stripe}

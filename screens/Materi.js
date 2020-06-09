@@ -13,47 +13,90 @@ const Materi = ({ navigation }) => {
 	        <NavbarDrawer title="Materi" navigation={navigation} />
 	        <ScrollView>
 	        	<Content padder>
-		        	<Text style={{color: 'salmon', fontSize: 20, fontWeight: 'bold'}}>Makharijul Huruf</Text>
-		        	<View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-		        		<View style={{width: '25%'}}>
-				        	<Card>
+		        	<View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+		        		<View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
 					            <CardItem>
 					              <Body>
 					                <Text>
-					                   //Your text here
+					                  Makhrijul Huruf
 					                </Text>
 					              </Body>
 					            </CardItem>
 					        </Card>
 				        </View>
-				        <View style={{width: '25%'}}>
-				        	<Card>
+				        <View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
 					            <CardItem>
 					              <Body>
 					                <Text>
-					                   //Your text here
+					                   Mad
 					                </Text>
 					              </Body>
 					            </CardItem>
 					        </Card>
 				        </View>
-				        <View style={{width: '25%'}}>
-				        	<Card>
+				        <View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
 					            <CardItem>
 					              <Body>
 					                <Text>
-					                   //Your text here
+					                   Hukum Idgham
 					                </Text>
 					              </Body>
 					            </CardItem>
 					        </Card>
 				        </View>
-				        <View style={{width: '25%'}}>
-				        	<Card>
+				        <View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
 					            <CardItem>
 					              <Body>
 					                <Text>
-					                   //Your text here
+					                   Sifat Huruf
+					                </Text>
+					              </Body>
+					            </CardItem>
+					        </Card>
+				        </View>
+				        <View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
+					            <CardItem>
+					              <Body>
+					                <Text>
+					                   Qolqolah
+					                </Text>
+					              </Body>
+					            </CardItem>
+					        </Card>
+				        </View>
+				        <View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
+					            <CardItem>
+					              <Body>
+					                <Text>
+					                   Hukum Nun Sukun & Tanwin
+					                </Text>
+					              </Body>
+					            </CardItem>
+					        </Card>
+				        </View>
+				        <View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
+					            <CardItem>
+					              <Body>
+					                <Text>
+					                   Hukum Mim Sukun
+					                </Text>
+					              </Body>
+					            </CardItem>
+					        </Card>
+				        </View>
+				        <View style={{width: '50%'}}>
+				        	<Card containerStyle={{ height: '100%'}}>
+					            <CardItem>
+					              <Body>
+					                <Text>
+					                   Hukum Ra
 					                </Text>
 					              </Body>
 					            </CardItem>

@@ -16,7 +16,7 @@ const Tabs = createBottomTabNavigator({
 			tabBarIcon: ({ tintColor }) => (
 		      <Image
 		        source={require('../assets/house.png')}
-		        style={[{width: 20, height: 20},{tintColor: tintColor}]}
+		        style={{width: 20, height: 20,tintColor: tintColor}}
 		      />
 		    ),
 		},
@@ -28,7 +28,7 @@ const Tabs = createBottomTabNavigator({
 			tabBarIcon: ({ tintColor }) => (
 		      <Image
 		        source={require('../assets/holy-quran.png')}
-		        style={[{width: 20, height: 20},{tintColor: tintColor}]}
+		        style={{width: 20, height: 20,tintColor: tintColor}}
 		      />
 		    ),
 		},
@@ -40,7 +40,7 @@ const Tabs = createBottomTabNavigator({
 			tabBarIcon: ({ tintColor }) => (
 		      <Image
 		        source={require('../assets/open-book.png')}
-		        style={[{width: 20, height: 20},{tintColor: tintColor}]}
+		        style={{width: 20, height: 20,tintColor: tintColor}}
 		      />
 		    ),
 		},
@@ -52,7 +52,7 @@ const Tabs = createBottomTabNavigator({
 			tabBarIcon: ({ tintColor }) => (
 		      <Image
 		        source={require('../assets/study.png')}
-		        style={[{width: 20, height: 20},{tintColor: tintColor}]}
+		        style={{width: 20, height: 20, tintColor: tintColor}}
 		      />
 		    ),
 		},

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView, ActivityIndicator, Text } from 'react-native'
+import { View, ScrollView, ActivityIndicator, Text, StyleSheet } from 'react-native'
 import { ListItem, Button } from 'react-native-elements';
 import { Audio } from 'expo-av'
 import NavbarDrawer from '../components/NavbarDrawer'
 import AudioControl from '../components/AudioControl'
 import API from '../utils/api'
-import { styles } from '../styles'
 
 const SurahSingle = ({ navigation }) => {
 	const { number } = navigation.state.params
@@ -70,7 +69,7 @@ const SurahSingle = ({ navigation }) => {
 						<ListItem 
 		       				key={index} 
 		       				title={
-		       					<Text style={[styles.ayah, { alignSelf: 'flex-end', color: '#656565'}]}>{(number != 1) ? item.text.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '') : item.text}</Text>
+		       					<Text style={styles.ayah}>{(number != 1) ? item.text.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '') : item.text}</Text>
 		       				}
 		       				leftElement={
 		       					<View style={{ backgroundColor: 'salmon', width: 30, height: 30, borderRadius: 50, alignItems: 'center', justifyContent: 'center'}}>
@@ -100,3 +99,15 @@ const SurahSingle = ({ navigation }) => {
 }
 
 export default SurahSingle
+
+const styles = StyleSheet.create({
+	ayah: {
+		width: '83%',
+		marginHorizontal: 10,
+		fontFamily: 'Quran',
+		fontSize: 20,
+		alignSelf: 'flex-end', 
+		color: '#656565', 
+		marginBottom: 10
+	}
+})

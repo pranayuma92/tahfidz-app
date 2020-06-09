@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView, Image, ActivityIndicator, Text } from 'react-native'
+import { View, ScrollView, Image, ActivityIndicator, Text, StyleSheet } from 'react-native'
 import { Avatar, Button, Card, ListItem } from 'react-native-elements'
 import NavbarDrawer from '../components/NavbarDrawer'
 import Counter from '../components/Counter'
 import API from '../utils/api'
-import { styles } from '../styles'
 
 const HafalanDetails = ({ navigation, user, auth,  hafalan }) => {
 	// if(!auth.uid){
@@ -34,7 +33,7 @@ const HafalanDetails = ({ navigation, user, auth,  hafalan }) => {
 				<View style={{marginBottom: 30}}>
 				{ hafal.map((item, index) => (
 					<Card key={index} containerStyle={{ borderRadius: 20}}>
-						<Text style={[styles.ayah, { alignSelf: 'flex-end', color: '#656565', marginBottom: 10}]}>{item.text}</Text>
+						<Text style={styles.ayah}>{item.text}</Text>
 						<Counter />
 					</Card>
 				)) }
@@ -45,3 +44,16 @@ const HafalanDetails = ({ navigation, user, auth,  hafalan }) => {
 }
 
 export default HafalanDetails
+
+
+const styles = StyleSheet.create({
+	ayah: {
+		width: '83%',
+		marginHorizontal: 10,
+		fontFamily: 'Quran',
+		fontSize: 20,
+		alignSelf: 'flex-end', 
+		color: '#656565', 
+		marginBottom: 10
+	}
+})
