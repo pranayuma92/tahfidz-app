@@ -13,7 +13,7 @@ const Materi = ({ navigation }) => {
 	        <NavbarDrawer title="Materi" navigation={navigation} />
 	        <ScrollView>
 	        	<Content padder>
-		        	<View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+		        	<View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center'}}>
 		        		<View style={{width: '50%'}}>
 				        	<Card containerStyle={{ height: '100%'}}>
 					            <CardItem>

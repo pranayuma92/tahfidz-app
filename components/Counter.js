@@ -17,8 +17,8 @@ const Counter = () => {
 	}
 
 	return (
-		<TouchableOpacity onPress={handleCounter} style={{backgroundColor: 'salmon', width: 120,paddingVertical: 10, paddingHorizontal: 25, borderRadius: 50, alignSelf: 'flex-end', alignItems: 'center'}}>
-			<Text style={{fontWeight: 'bold', color: '#fff'}}>{count}x BACA</Text>
+		<TouchableOpacity onPress={handleCounter} style={{backgroundColor: 'salmon', width: 85,paddingVertical: 8, paddingHorizontal: 15, borderRadius: 50, alignSelf: 'flex-end', alignItems: 'center', marginRight: 20}}>
+			<Text style={{fontWeight: 'bold', color: '#fff', fontSize: 12}}>{count}x BACA</Text>
 		</TouchableOpacity>
 	)
 }

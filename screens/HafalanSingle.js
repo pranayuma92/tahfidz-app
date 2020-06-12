@@ -33,7 +33,7 @@ const HafalanSingle = ({ navigation, user, auth,  hafalan }) => {
 	       				containerStyle={{backgroundColor: '#fff2e2'}}
 	       				bottomDivider
 						chevron
-						onPress={() => navigation.push('HafalanDetails', {surah : item.surah.split('_')[0], to: item.to, from: item.from}) }
+						onPress={() => navigation.push('HafalanDetails', {surah : item.surah.split('_')[0], title: item.surah.split('_')[1],  to: item.to, from: item.from}) }
 
 	       			/>
 

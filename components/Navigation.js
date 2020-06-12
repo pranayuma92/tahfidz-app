@@ -12,6 +12,7 @@ import Profile from '../screens/Profile'
 import Setting from '../screens/Setting'
 import HafalanSingle from '../screens/HafalanSingle'
 import HafalanDetails from '../screens/HafalanDetails'
+import Setor from '../screens/Setor'
 
 //Inisiasi untuk menjalankan navigasi
 const Navigation = createStackNavigator({
@@ -59,6 +60,12 @@ const Navigation = createStackNavigator({
 	},
 	HafalanDetails: {
 		screen: HafalanDetails,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	Setor: {
+		screen: Setor,
 		navigationOptions: {
             header: null,
         },
