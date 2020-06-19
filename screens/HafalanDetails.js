@@ -70,7 +70,7 @@ const HafalanDetails = ({ navigation, user, auth,  hafalan }) => {
 								</Card>
 							)
 						})}
-						<TouchableOpacity style={styles.storBtn} onPress={() => navigation.navigate('Setor')}>
+						<TouchableOpacity style={styles.storBtn} onPress={() => navigation.push('Setor', { surah: surah, to: to, from: from, title: title})}>
 							<Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}>SETOR</Text>
 						</TouchableOpacity>
 					</View>

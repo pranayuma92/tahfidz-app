@@ -9,21 +9,25 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { styles } from '../styles'
 import { getAllSurah } from '../store/actions/quranAction'
+import { signOut } from '../store/actions/userAction'
 
-const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
+const Home = ({ navigation, user, auth, users, hafalan, getAllSurah, signOut, friends }) => {
 
 	//Inisasi data lokal komponen
 	const [ student, setStudent ] = useState(['Fulan', 'Ibnu', 'Hasan', 'Khalid', 'Maulana', 'Iqbal', 'Haikal'])
-	const dataHafalan = hafalan && hafalan.filter( item => user && user.hafalan.includes(item.id))
+	const dataHafalan = !!hafalan && hafalan.filter( item => !!user && user.hafalan.includes(item.id))
+	const friend = !!friends && friends.filter( item => !!user && user.teacher.includes(item.teacher) && user.name !== item.name) 
 	const [ ayahfrom, setAyahfrom ] = useState('')
 	const [ ayahto, setAyahto] = useState('')  
 	
 
 	//Cek autentikasi
 	//Jika autentikasi ID kosong, arahkan ke layar login
+	//console.log(user.role)
 	if(!auth.uid){
 		navigation.replace('Login')
 	}
+
 
 	useEffect(() => {
 		//Memanggil fungsi untuk mengambil data surah dan ayat dari API
@@ -67,21 +71,21 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
 			        	/>
 			        </View>
 			        <Card containerStyle={{ marginBottom: 30, borderRadius: 20, padding:0}}>
-						{ student.map((u, i) => {
+						{ !!friend && friend.map((u, i) => {
 							let stripe
 
 							if(i % 2 !== 0) {
 								stripe = {backgroundColor: 'rgba(52, 52, 52, 0.1)'}
 							} else {
 								stripe = {backgroundColor: 'rgba(0, 0, 0, 0.0)'}
-							}
+							}							
 
 							return (
 							    <ListItem
 						          	key={i}
 						          	roundAvatar
-						          	leftAvatar={{ source: { uri: `https://api.adorable.io/avatars/285/${ u }.png`} }}
-						          	title={u}
+						          	leftAvatar={{ source: { uri: `https://api.adorable.io/avatars/285/${ u.name }.png`} }}
+						          	title={u.name}
 						          	titleStyle={styles.hasBold}
 						          	subtitle={
 						          		<View>
@@ -91,7 +95,8 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah }) => {
 						          	}
 						         	containerStyle={stripe}
 							    />
-							);
+							)
+							
 						})}
 					</Card>
 		        </ScrollView>
@@ -109,13 +114,15 @@ const mapStateToProps = (state, props) => {
 	return {
 		user: user,
 		auth: auth,
-		hafalan: hafalan
+		hafalan: hafalan,
+		friends: state.firestore.ordered.users
 	}
 }
 
 //Memanggil fungsi action creator dan mengubahnya menjadi props
 const mapDispatchToProps = (dispatch) => ({
-	getAllSurah: () => dispatch(getAllSurah())
+	getAllSurah: () => dispatch(getAllSurah()),
+	signOut : (callback) => dispatch(signOut(callback))
 }) 
 
 //Menghubungkan komponen dengan redux store

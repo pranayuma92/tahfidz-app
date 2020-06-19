@@ -17,7 +17,8 @@ const signUp = (newUser, callback) => {
 				address: '',
 				phone: '',
 				city: '',
-				gender: ''
+				gender: '',
+				hafalan: ['opnayt001']
 			})
 		}).then(() => {
 			dispatch({type: 'SIGNUP_SUCCESS'})
@@ -66,7 +67,7 @@ const editUser = (newData, callback) => {
 			address: newData.address,
 			phone: newData.phone,
 			city: newData.city,
-			gender: newData.gender
+			gender: newData.gender,
 		}).then((res) => {
 			callback()
 		}).catch(error => {
@@ -75,4 +76,39 @@ const editUser = (newData, callback) => {
 	}
 }
 
-export { signUp, signIn, signOut, editUser }
+const addSetoran = (uid, surah, to, from, title, file, name, callback) => {
+	return (dispatch, getState, {getFirestore}) => {
+		const firestore = getFirestore()
+
+		firestore.collection('setoran').add({
+			uid: uid,
+			surah: surah,
+			to: to,
+			from: from,
+			title: title,
+			file: file,
+			name: name,
+			date: new Date()
+		}).then(() => {
+			callback()
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+}
+
+const addKoreksi = (data, callback) => {
+	return (dispatch, getState, {getFirestore}) => {
+		const firestore = getFirestore()
+
+		firestore.collection('koreksi').add({
+			...data
+		}).then(() => {
+			callback()
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+}
+
+export { signUp, signIn, signOut, editUser, addSetoran, addKoreksi }

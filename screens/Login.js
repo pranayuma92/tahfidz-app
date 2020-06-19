@@ -10,7 +10,7 @@ const Login = ({ auth, navigation, signIn, msg }) => {
 	const [ password, setPassword ] = useState('')
 
 	if(auth.uid){
-		navigation.replace('Home')
+		navigation.replace('Auth')
 	}
 
 	const login = () => {

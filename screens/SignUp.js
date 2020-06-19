@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 const SignUp = ({ navigation, signUp, auth, msg }) => {
 
 	if(auth.uid){
-		navigation.replace('Home')
+		navigation.replace('Auth')
 	}
 
 	const [ username, setUsername ] = useState('')

@@ -13,6 +13,11 @@ import Setting from '../screens/Setting'
 import HafalanSingle from '../screens/HafalanSingle'
 import HafalanDetails from '../screens/HafalanDetails'
 import Setor from '../screens/Setor'
+import Auth from '../screens/Auth'
+import Koreksi from '../screens/Koreksi'
+import KoreksiDetail from '../screens/KoreksiDetail'
+import DetailKoreksi from '../screens/DetailKoreksi'
+import TeacherDrawer from './TeacherDrawer'
 
 //Inisiasi untuk menjalankan navigasi
 const Navigation = createStackNavigator({
@@ -69,10 +74,39 @@ const Navigation = createStackNavigator({
 		navigationOptions: {
             header: null,
         },
+	},
+	Auth: {
+		screen: Auth,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	HomeTeacher: {
+		screen: TeacherDrawer,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	Koreksi: {
+		screen: Koreksi,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	KoreksiDetail: {
+		screen: KoreksiDetail,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	DetailKoreksi: {
+		screen: DetailKoreksi,
+		navigationOptions: {
+            header: null,
+        },
 	}
-
 }, {
-  initialRouteName: 'Home'
+  initialRouteName: 'Auth'
 })
 
 export default createAppContainer(Navigation)

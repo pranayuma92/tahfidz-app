@@ -12,9 +12,35 @@ const DrawerContent = ({ auth, user, navigation }) => {
 		{ name: 'Tentang', screen: 'Tentang'}
 	]
 
+	const menuTeacher = [
+		{ name: 'Profil', screen: 'Profile'},
+		{ name: 'Setoran', screen: 'SetoranStudent'},
+		{ name: 'Hafalan', screen: 'HafalanStudent'},
+		{ name: 'Validasi', screen: 'Validasi'},
+		{ name: 'Pengaturan', screen: 'Setting'},
+		{ name: 'Tentang', screen: 'Tentang'}
+	]
+
 	const handleDrawerItem = (target) => {
 		navigation.navigate(`${target}`)
 		navigation.toggleDrawer() 
+	}
+
+	const renderMenu = () => {
+		let menus
+		if(user.role === 'student'){
+			menus = menuChild
+		} else {
+			menus = menuTeacher
+		}
+
+		return (
+			menus.map( (menu, index) => (
+				<TouchableOpacity onPress={() => handleDrawerItem(menu.screen)} key={index} style={styles.menuItem}>
+					<Text style={styles.menuItemText}>{menu.name}</Text>
+				</TouchableOpacity>
+			))
+		)
 	}
 
 	return (
@@ -26,13 +52,7 @@ const DrawerContent = ({ auth, user, navigation }) => {
 				<Text style={styles.text}>{!!user && user.name}</Text>
 			</View>
 			<View>
-				{
-					menuChild.map( (menu, index) => (
-						<TouchableOpacity onPress={() => handleDrawerItem(menu.screen)} key={index} style={styles.menuItem}>
-							<Text style={styles.menuItemText}>{menu.name}</Text>
-						</TouchableOpacity>
-					))
-				}
+				{ renderMenu() }
 			</View>
 		</View>
 	)
