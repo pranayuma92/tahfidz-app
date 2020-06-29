@@ -14,93 +14,61 @@ const Materi = ({ navigation }) => {
 	        <ScrollView>
 	        	<Content padder>
 		        	<View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center'}}>
-		        		<View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                  Makhrijul Huruf
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+		        		<View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Makhrijul Huruf', mat: 'makharijul'})}>
+				                  Makhrijul Huruf
+				                </Text>
+					        </View>
 				        </View>
-				        <View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                   Mad
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+				        <View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Mad', mat: 'mad'})}>
+				                   Mad
+				                </Text>
+				            </View>
 				        </View>
-				        <View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                   Hukum Idgham
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+				        <View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Hukum Idgham', mat: 'hukum-idgham'})}>
+				                   Hukum Idgham
+				                </Text>
+				            </View>
 				        </View>
-				        <View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                   Sifat Huruf
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+				        <View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Sifat Huruf', mat: 'sifat-huruf'})}>
+				                   Sifat Huruf
+				                </Text>
+					        </View>
 				        </View>
-				        <View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                   Qolqolah
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+				        <View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Qolqolah', mat: 'qolqolah'})}>
+				                   Qolqolah
+				                </Text>
+				            </View>
 				        </View>
-				        <View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                   Hukum Nun Sukun & Tanwin
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+				        <View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5, padding: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Hukum Nun Sukun & Tanwin', mat: 'hukum-nun-sukun-tanwin'})}>
+				                   Hukum Nun Sukun & Tanwin
+				                </Text>
+				            </View>
 				        </View>
-				        <View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                   Hukum Mim Sukun
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+				        <View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Hukum Mim Sukun', mat: 'hukum-mim-sukun'})}>
+				                   Hukum Mim Sukun
+				                </Text>
+				            </View>
 				        </View>
-				        <View style={{width: '50%'}}>
-				        	<Card containerStyle={{ height: '100%'}}>
-					            <CardItem>
-					              <Body>
-					                <Text>
-					                   Hukum Ra
-					                </Text>
-					              </Body>
-					            </CardItem>
-					        </Card>
+				        <View style={{width: '50%', padding: 5}}>
+				        	<View style={{ height: 60, backgroundColor: '#fff', width: '100%', alignItems: 'center', justifyContent: 'center', borderRadius: 5}} >
+				                <Text onPress={() => navigation.navigate('MateriOverview', { title: 'Hukum Ra', mat: 'hukum-ra'})}>
+				                   Hukum Ra
+				                </Text>
+				            </View>
 				        </View>
 			        </View>
 		        </Content>

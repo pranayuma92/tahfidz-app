@@ -111,4 +111,32 @@ const addKoreksi = (data, callback) => {
 	}
 }
 
-export { signUp, signIn, signOut, editUser, addSetoran, addKoreksi }
+const addJadwalValidasi = (data, callback) => {
+	return (dispatch, getState, {getFirestore}) => {
+		const firestore = getFirestore()
+
+		firestore.collection('jadwal_validasi').add({
+			...data
+		}).then(() => {
+			callback()
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+}
+
+const addValidasiSiswa = (data, callback) => {
+	return (dispatch, getState, {getFirestore}) => {
+		const firestore = getFirestore()
+
+		firestore.collection('validasi').add({
+			...data
+		}).then(() => {
+			callback()
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+}
+
+export { signUp, signIn, signOut, editUser, addSetoran, addKoreksi, addJadwalValidasi, addValidasiSiswa }

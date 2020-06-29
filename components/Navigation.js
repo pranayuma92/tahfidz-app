@@ -18,6 +18,11 @@ import Koreksi from '../screens/Koreksi'
 import KoreksiDetail from '../screens/KoreksiDetail'
 import DetailKoreksi from '../screens/DetailKoreksi'
 import TeacherDrawer from './TeacherDrawer'
+import MateriOverview from '../screens/MateriOverview'
+
+import Overview from '../screens/Validasi/Overview'
+import AddJadwal from '../screens/Validasi/AddJadwal'
+import ProsesValidasi from '../screens/Validasi/ProsesValidasi'
 
 //Inisiasi untuk menjalankan navigasi
 const Navigation = createStackNavigator({
@@ -101,6 +106,30 @@ const Navigation = createStackNavigator({
 	},
 	DetailKoreksi: {
 		screen: DetailKoreksi,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	VOverview: {
+		screen: Overview,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	MateriOverview: {
+		screen: MateriOverview,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	AddJadwal: {
+		screen: AddJadwal,
+		navigationOptions: {
+            header: null,
+        },
+	},
+	ProsesValidasi: {
+		screen: ProsesValidasi,
 		navigationOptions: {
             header: null,
         },

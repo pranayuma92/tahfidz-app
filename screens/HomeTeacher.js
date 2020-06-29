@@ -73,7 +73,7 @@ const HomeTeacher = ({ navigation, user, users, auth, setoran }) => {
 				         <View style={styling.innerWrapper}>
 				        	<TouchableOpacity 
 				        		style={styling.customCard}
-				        		onPress={() => handleTabs('validasi')}>
+				        		onPress={() => navigation.navigate('VOverview')}>
 				        		<Text style={styling.cardText}>Validasi</Text>
 				        	</TouchableOpacity>
 				        </View>
