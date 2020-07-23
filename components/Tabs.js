@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 import Home from '../screens/Home'
 import Mushaf from '../screens/Mushaf'
 import Materi from '../screens/Materi'
-import Hafalan from '../screens/Hafalan'
+import HafalanSingle from '../screens/HafalanSingle'
 import Profile from '../screens/Profile'
 
 //Inisiasi tabbar
@@ -46,7 +46,7 @@ const Tabs = createBottomTabNavigator({
 		},
 	},
 	Hafalan: {
-		screen: Hafalan,
+		screen: HafalanSingle,
 		navigationOptions: {
 			tabBarLabel: 'Hafalan',
 			tabBarIcon: ({ tintColor }) => (

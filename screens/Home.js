@@ -67,7 +67,7 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah, signOut, fr
 			        		small
 			        		title="HAFALAN SAYA" 
 			        		buttonStyle={styles.greenButton} 
-			        		onPress={() => navigation.navigate('HafalanSingle', { from: ayahfrom, to: ayahto  })} 
+			        		onPress={() => navigation.navigate('Hafalan', { from: ayahfrom, to: ayahto  })} 
 			        	/>
 			        </View>
 			        <Card containerStyle={{ marginBottom: 30, borderRadius: 20, padding:0}}>

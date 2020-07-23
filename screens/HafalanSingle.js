@@ -16,7 +16,7 @@ const HafalanSingle = ({ navigation, user, auth,  hafalan, koreksi }) => {
 
 	return (
 		<View style={styles.bgPrimary}>
-	        <NavbarDrawer title="Hafalan Saya" navigation={navigation} nomenu/>
+	        <NavbarDrawer title="Hafalan Saya" navigation={navigation} />
 	        <ScrollView>
 	        	{
 	        		!!koreksi &&

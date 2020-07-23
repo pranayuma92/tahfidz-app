@@ -62,12 +62,6 @@ const Navigation = createStackNavigator({
             header: null,
         },
 	},
-	HafalanSingle: {
-		screen: HafalanSingle,
-		navigationOptions: {
-            header: null,
-        },
-	},
 	HafalanDetails: {
 		screen: HafalanDetails,
 		navigationOptions: {

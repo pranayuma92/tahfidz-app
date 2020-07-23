@@ -7,6 +7,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import Modal from 'react-native-modal'
 import { styles } from '../styles'
+import SoundControl from '../components/SoundControl'
 
 const MateriOverview = ({ navigation, module, mod }) => {
 	const { title, mat } = navigation.state.params
@@ -19,16 +20,14 @@ const MateriOverview = ({ navigation, module, mod }) => {
 	const toggleModal = (id) => {
 	    setModalVisible(!isModalVisible)
 
-	    
+	    const mat = {
+	    	title: mod[id].title,
+	    	content: mod[id].content,
+	    	img: mod[id].img ? mod[id].img : '',
+	    	sound: mod[id].sound ? mod[id].sound : ''
+	    }
 
-		    const mat = {
-		    	title: mod[id].title,
-		    	content: mod[id].content,
-		    	img: mod[id].img ? mod[id].img : '',
-		    	sound: mod[id].sound ? mod[id].sound : ''
-		    }
-
-		    setMatsingle(mat)
+	    setMatsingle(mat)
 	    
 	    console.log(mod[id].title)
 	}
@@ -64,8 +63,13 @@ const MateriOverview = ({ navigation, module, mod }) => {
 	        <Modal isVisible={isModalVisible}>
 	          	<View style={{backgroundColor: '#fff', padding: 10, borderRadius: 10}}>
 	            	<Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 5}}>{matsingle.title}</Text>
-	            	<Image source={{uri: matsingle.img }}/>
+	            	{ !!matsingle.img && 
+	            		<Image style={{ height: 250, resizeMode: 'contain' }} source={{uri: matsingle.img }}/>
+	            	}
 	            	<Text style={{marginBottom: 30}}>{matsingle.content}</Text>
+	            	{ !!matsingle.sound && 
+	            		<SoundControl uri={matsingle.sound} />
+	            	}
 	            	<Button 
 		        		small
 		        		title="Tutup" 

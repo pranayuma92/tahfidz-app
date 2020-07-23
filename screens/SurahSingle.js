@@ -3,7 +3,7 @@ import { View, ScrollView, ActivityIndicator, Text, StyleSheet } from 'react-nat
 import { ListItem, Button } from 'react-native-elements';
 import { Audio } from 'expo-av'
 import NavbarDrawer from '../components/NavbarDrawer'
-import AudioControl from '../components/AudioControl'
+import SoundControl from '../components/SoundControl'
 import API from '../utils/api'
 
 const SurahSingle = ({ navigation }) => {

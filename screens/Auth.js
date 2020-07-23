@@ -16,7 +16,7 @@ const Auth = ({ navigation, user, auth, signOut }) => {
 			navigation.replace('Home')
 		} else if(!!user && user.role === 'teacher') {
 			navigation.replace('HomeTeacher')
-		} else if(!!user && user.role === 'unset') {
+		} else if(!!user && user.role === 'unset' || !!user && user.role === 'admin') {
 			signOut(() => {})
 		}
 	})
@@ -32,7 +32,7 @@ const mapStateToProps = (state, props) => {
 	const auth = state.firebase.auth;
 	const users = state.firestore.data.users;
 	const user = users ? users[auth.uid] : null;
-	const hafalan = state.firestore.ordered.hafalan
+	
 	return {
 		user: user,
 		auth: auth,

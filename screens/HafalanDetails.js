@@ -13,6 +13,7 @@ const HafalanDetails = ({ navigation, user, auth,  hafalan }) => {
 
 	const { surah, to, from, title } = navigation.state.params
 	const [ hafal, setHafal ] = useState()
+	const [ readCount, setReadCount ] = useState(0)
 
 	useEffect(() => {
 		API.getSurahWithParams( surah, (from - 1), ((to - from) + 1) )
@@ -27,6 +28,12 @@ const HafalanDetails = ({ navigation, user, auth,  hafalan }) => {
 
 	console.log(navigation.state.params)
 
+	const handleReadCount = () => {
+		setReadCount(readCount + 1)
+	}
+
+	console.log(readCount)
+ 
 	return (
 		<View style={styles.bgPrimary}>
 			<NavbarDrawer title="Hafalan" navigation={navigation} nomenu/>
@@ -66,13 +73,16 @@ const HafalanDetails = ({ navigation, user, auth,  hafalan }) => {
 									<Text style={styles.ayah}>{(surah != 1) ? item.text.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '') : item.text}</Text>
 									<View style={styles.redline}></View>
 									<AudioControl source={item.audioSecondary[1]} />
-									<Counter />
+									<Counter callback={handleReadCount}/>
 								</Card>
 							)
 						})}
-						<TouchableOpacity style={styles.storBtn} onPress={() => navigation.push('Setor', { surah: surah, to: to, from: from, title: title})}>
-							<Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}>SETOR</Text>
-						</TouchableOpacity>
+						{
+							(readCount >= 22) &&
+							<TouchableOpacity style={styles.storBtn} onPress={() => navigation.push('Setor', { surah: surah, to: to, from: from, title: title})}>
+								<Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}>SETOR</Text>
+							</TouchableOpacity>
+						}
 					</View>
 				</ScrollView>
 			}

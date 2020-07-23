@@ -3,17 +3,19 @@ import { Vibration } from 'react-native'
 import { View, ScrollView, Image, ActivityIndicator, Text, TouchableOpacity } from 'react-native'
 import { Avatar, Button, Card, ListItem } from 'react-native-elements'
 
-const Counter = () => {
+const Counter = ({ callback }) => {
 	const [count, setCount] = useState(0)
 
 	const handleCounter = () => {
 
 		if(count > 21){
+			Vibration.vibrate(500)
 			return
 		}
 
 		setCount(count+1)
 		Vibration.vibrate(100)
+		callback()
 	}
 
 	return (

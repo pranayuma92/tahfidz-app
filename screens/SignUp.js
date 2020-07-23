@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 
 const SignUp = ({ navigation, signUp, auth, msg }) => {
 
-	if(auth.uid){
-		navigation.replace('Auth')
-	}
+	// if(auth.uid){
+	// 	navigation.replace('Auth')
+	// }
 
 	const [ username, setUsername ] = useState('')
 	const [ email, setEmail ] = useState('')
@@ -25,7 +25,9 @@ const SignUp = ({ navigation, signUp, auth, msg }) => {
 		if(password !== retype){
 			alert('password not match')
 		} else {
-			signUp(newUser, () => {})
+			signUp(newUser, () => {
+				navigation.replace('Auth')
+			})
 		}
 	}
 

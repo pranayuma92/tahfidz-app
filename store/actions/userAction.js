@@ -11,7 +11,7 @@ const signUp = (newUser, callback) => {
 			return firestore.collection('users').doc(resp.user.uid).set({
 				name: newUser.fullname,
 				email: newUser.email,
-				role: 'student',
+				role: 'unset',
 				isActive: 'true',
 				birth: '',
 				address: '',
