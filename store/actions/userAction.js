@@ -18,7 +18,8 @@ const signUp = (newUser, callback) => {
 				phone: '',
 				city: '',
 				gender: '',
-				hafalan: ['opnayt001']
+				hafalan: ['opnayt001'],
+				img: 'https://i0.wp.com/ahfirstaid.org/wp-content/uploads/2014/07/avatar-placeholder.png'
 			})
 		}).then(() => {
 			dispatch({type: 'SIGNUP_SUCCESS'})
@@ -61,13 +62,12 @@ const editUser = (newData, callback) => {
 
 		firestore.collection('users').doc(newData.uid).update({
 			name: newData.name,
-			role: newData.role,
-			isActive: newData.isActive,
 			birth: newData.birth,
 			address: newData.address,
 			phone: newData.phone,
 			city: newData.city,
 			gender: newData.gender,
+			img: newData.img
 		}).then((res) => {
 			callback()
 		}).catch(error => {

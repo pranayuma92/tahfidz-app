@@ -40,7 +40,7 @@ const MateriOverview = ({ navigation, module, mod }) => {
 		<View style={styles.bgPrimary}>
 	        <NavbarDrawer title={title} navigation={navigation} nomenu/>
 	        <ScrollView>
-	        { modules && modules.map(item => (
+	        { modules && modules.map((item, index) => (
 	        <ListItem 
 				
 				key={item.id}
@@ -49,7 +49,7 @@ const MateriOverview = ({ navigation, module, mod }) => {
 				}
 				leftElement={
 					<View style={{ backgroundColor: 'salmon', width: 30, height: 30, borderRadius: 50, alignItems: 'center', justifyContent: 'center'}}>
-						<Text style={{ color: '#fff' }}>1</Text>
+						<Text style={{ color: '#fff' }}>{index + 1}</Text>
 					</View>
 				}
 				containerStyle={{backgroundColor: '#fff2e2'}}

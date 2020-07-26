@@ -46,7 +46,7 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah, signOut, fr
 			        		<Avatar
 							  rounded
 							  size="large"
-							  source={{ uri: `https://api.adorable.io/avatars/285/${ user.name }.png`}}
+							  source={{ uri: user.img}}
 							/>
 			        	</View>
 			        	<View style={styles.userAvatarSideText}>
@@ -84,7 +84,7 @@ const Home = ({ navigation, user, auth, users, hafalan, getAllSurah, signOut, fr
 							    <ListItem
 						          	key={i}
 						          	roundAvatar
-						          	leftAvatar={{ source: { uri: `https://api.adorable.io/avatars/285/${ u.name }.png`} }}
+						          	leftAvatar={{ source: { uri: u.img } }}
 						          	title={u.name}
 						          	titleStyle={styles.hasBold}
 						          	subtitle={
